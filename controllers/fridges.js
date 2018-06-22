@@ -9,3 +9,14 @@ exports.showAll = (req, res) => {
         }
     })
 }
+
+exports.UpdateOne = (req, res) => {
+    Fridge.update({_id: req.params.id}, {$set: req.body},
+    (err, fridges) => {
+        if (err) {
+            res.json({ status: "FAIL", err })
+        } else {
+            res.json({ status: "SUCCESS", payload: { fridges } })
+        }
+    })
+}
